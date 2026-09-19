@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - SAFE Budget</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; margin: 0 auto; padding: 20px; max-width: 800px; color: #333; }
+        h1, h2 { color: #1d1d1f; }
+        h1 { border-bottom: 2px solid #2A71D6; padding-bottom: 10px; }
+        .contact-box { background: #E8F1FF; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .faq-item { margin: 18px 0; padding: 15px; border-left: 4px solid #2A71D6; background: #fafafa; }
+        .faq-question { font-weight: bold; margin-bottom: 8px; }
+        a { color: #2A71D6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>SAFE Budget Support</h1>
+    <p><strong>Operator / seller:</strong> Gallahadd Software LLC · Last Updated: September 19, 2026</p>
+
+    <div class="contact-box">
+        <h2>📧 Get Help</h2>
+        <p><strong>Email:</strong> <a href="mailto:support@gallahadd.com">support@gallahadd.com</a></p>
+        <p><strong>Helpful to include:</strong> the SAFE Budget version and build number, device model, OS version,
+        what you expected, and what happened. Settings → iCloud Sync can generate a non-sensitive diagnostics summary
+        you can review and paste into your message.</p>
+        <p>Email is voluntary. The address, message, attachments, and any details you send are received by the support
+        mailbox and used to investigate and respond. Please do not send bank credentials, device passcodes,
+        account numbers, or screenshots containing financial details.</p>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+        <div class="faq-question">Where is my data stored? Can the developer see it?</div>
+        <p>Readable ledger data is processed on your devices. The local ledger uses Apple's app sandbox and
+        device/platform protection. When CloudKit is available, designated ledger values use CloudKit encrypted fields
+        and attachments use CloudKit assets in your private database. The developer operates no readable-ledger server
+        and does not receive your balances, transactions, budgets, or receipts. CloudKit still handles limited record,
+        routing, timestamp, deletion, and sharing metadata needed to sync.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">Why does SAFE Budget keep a local plaintext index?</div>
+        <p>Encrypted fields cannot be efficiently sorted or graphed directly, so the app builds a separate query index
+        while your household is unlocked. It stays on that device, never syncs, and is excluded from device backups and
+        local safety snapshots. It is cleared when the app locks or logs out and rebuilt after unlock. A full erase
+        removes it and all local safety snapshots.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">How do I unlock SAFE Budget?</div>
+        <p>Use Face ID, Touch ID, or your device passcode. SAFE Budget has no separate sync passphrase or recovery key.
+        CloudKit access uses your signed-in Apple Account. Never send a device passcode or Apple Account credential to
+        support.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">Does it sync across my devices?</div>
+        <p>Yes. When CloudKit is available, ledger values in encrypted CloudKit fields and CloudKit assets sync
+        automatically through your private database. Bank
+        credentials can sync to trusted devices on the same Apple Account through iCloud Keychain; provider progress
+        checkpoints remain device-local. A person using a different Apple Account must be explicitly authorized as a
+        named participant through a private CloudKit share.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">How do bank connections work?</div>
+        <p>Connections are optional. SimpleFIN communicates directly between your device and your SimpleFIN Bridge.
+        Bring-your-own Plaid uses the Plaid developer credentials you supply, Plaid LinkKit for bank login, and direct
+        device-to-Plaid API calls. SAFE Budget has no Plaid webhook receiver or always-on refresh server. Provider
+        credentials and access tokens are stored in Keychain and are not sent to the developer. Disconnecting stops
+        future access, but imported history remains until you delete it or erase the household.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">How does Apple Wallet access work? (iPhone only)</div>
+        <p><strong>Apple supports Apple Wallet account access (FinanceKit) on iPhone only.</strong> It is not available
+        on iPad or on Mac &mdash; that is Apple's platform limitation, not a missing SAFE Budget feature. Connect Apple
+        Card, Apple Cash, and Apple Card Savings from SAFE Budget on your iPhone, and the imported accounts sync to your
+        iPad and Mac through iCloud like any other account. On iPad and Mac you can still use SimpleFIN, your own Plaid
+        setup, file import, or manual accounts.</p>
+        <p>If you grant FinanceKit permission on your iPhone, SAFE Budget can read supported Apple Wallet balances and
+        transactions on the device and import them into the local and CloudKit-protected ledger. The developer does not
+        receive Wallet data. You can revoke permission in system settings; already imported rows remain until you delete
+        them or erase the household.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">Does Ask SAFE send my finances to an AI service?</div>
+        <p>No. Recognized money questions use deterministic calculations on the device. On supported systems, other
+        answers can use Apple's on-device Foundation Models. Prompts and ledger context are not sent to the developer or
+        an external AI service.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">What happens when a household member is revoked?</div>
+        <p>Revoking a named participant removes that person's server-side CloudKit share access. It cannot recall
+        information the former participant already viewed, exported, screenshotted, or otherwise copied.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">What leaves the device when I use “How to cancel”?</div>
+        <p>That optional action opens a DuckDuckGo search containing the merchant or payee name and cancellation-related
+        words. It is not automatic. No balance, amount, account number, or other ledger data is added to the query.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">Can I export, reset, or delete everything?</div>
+        <p>Settings provides supported JSON/CSV exports and passphrase-protected encrypted backups. Plaintext exports
+        are readable files, so protect the destination. <strong>Reset this device</strong> keeps the CloudKit household
+        and can retain a sanitized, platform-protected safety snapshot for recovery. An owner using <strong>Erase all data</strong>
+        removes the local store, local snapshots, app preferences and stored provider credentials, and requests deletion of
+        the private CloudKit zone; an unavailable iCloud deletion is retained for retry. A participant can remove the
+        local copy but cannot delete the owner's CloudKit household.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">Is it available on Mac, iPhone, iPad, and Apple Watch?</div>
+        <p>SAFE Budget is a native app for iPhone, iPad, and Mac, with widgets and an Apple Watch glance. Supported data
+        syncs through the CloudKit account and sharing paths described in the Privacy Policy.</p>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">Do you collect analytics or use tracking?</div>
+        <p>No. SAFE Budget contains no advertising, cross-app tracking, or developer-operated product analytics. Its
+        optional Apple, bank-provider, search, sharing, export, and support functions communicate only as described in
+        the <a href="https://gallahadd.com/privacy-safebudget.html">Privacy Policy</a>.</p>
+    </div>
+
+    <p style="margin-top:30px;">See also:
+    <a href="https://gallahadd.com/privacy-safebudget.html">Privacy Policy</a> ·
+    <a href="https://gallahadd.com/terms-safebudget.html">Terms of Service</a></p>
+
+    <p style="color:#666;"><em>© 2026 Gallahadd Software LLC. All rights reserved.</em></p>
+</body>
+</html>
