@@ -87,11 +87,11 @@
         <p class="entity"><strong>Operator / Data Controller:</strong> Gallahadd Software LLC<br>
         <strong>Product:</strong> AI Todo Plus (Apple App Store ID 6749715981)<br>
         <strong>Mailing:</strong> Gallahadd Software LLC, Waxahachie, Texas, United States</p>
-        <p class="last-updated">Effective / Last Updated: September 19, 2026</p>
+        <p class="last-updated">Effective / Last Updated: September 22, 2026 (version 3.0)</p>
 
         <div class="highlight">
             <strong>Your Privacy Matters</strong><br>
-            AI Todo Plus is operated by Gallahadd Software LLC. The app is designed with privacy in mind: your tasks and related content stay under your control on your device and, if you enable it, in your iCloud account. We do not sell your personal information. The App may collect usage analytics and crash diagnostics for product improvement, as described below and in App Store privacy labels.
+            AI Todo Plus is operated by Gallahadd Software LLC. The app is designed with privacy in mind: your tasks, food log and related content stay under your control on your device and, if you enable it, in your iCloud account. Apple Health access is optional and write-only. We do not sell your personal information. The App may collect usage analytics and crash diagnostics for product improvement, as described below and in App Store privacy labels.
         </div>
 
         <div class="section">
@@ -106,9 +106,11 @@
             <h3>2.1 Information You Provide</h3>
             <ul>
                 <li><strong>Task Data:</strong> Tasks, notes, due dates, priorities, and categories you create</li>
-                <li><strong>AI Prompts:</strong> Meal preferences, workout goals, and natural-language inputs you submit to AI features</li>
+                <li><strong>AI Prompts:</strong> Meal preferences, workout goals, natural-language inputs you submit to AI features, and food descriptions you enter in Nutrition › Describe</li>
+                <li><strong>Nutrition Data:</strong> Foods you log (name, brand, amount, meal, date and time, and nutrition values), your saved foods, meals and recipes, and your optional daily nutrition goals</li>
+                <li><strong>Food Search Terms and Barcodes:</strong> Text you type into food search and barcodes you scan or enter</li>
                 <li><strong>Account / Apple context:</strong> Apple ID context used for iCloud sync (handled by Apple) and subscription status via StoreKit</li>
-                <li><strong>Optional API Key:</strong> Your personal OpenAI API key if you choose to use your own (stored on device with platform protections)</li>
+                <li><strong>Optional API Keys:</strong> Your personal OpenAI API key and/or USDA FoodData Central (api.data.gov) key if you choose to use your own (stored in the device Keychain, never sent to Gallahadd)</li>
             </ul>
 
             <h3>2.2 Information That May Be Collected Automatically</h3>
@@ -125,10 +127,19 @@
             <ul>
                 <li>Location data (unless a future feature requires it and you grant permission)</li>
                 <li>Contact lists</li>
-                <li>Photos or media (unless you explicitly add them to tasks)</li>
+                <li>Photos or media (unless you explicitly add them to tasks). The camera is used only to scan barcodes and nutrition labels; scanning and label text recognition run on your device, and images are not stored or uploaded.</li>
                 <li>Browsing history outside the App</li>
-                <li>Health / HealthKit data — Gallahadd does not invent or assume HealthKit collection. If a future or optional version of the App offers Health-related features and you grant permission, that would be disclosed in-app and in App Store privacy labels; otherwise HealthKit data is not collected.</li>
+                <li>Health / HealthKit data from Apple Health. The App never reads data from Apple Health (see 2.4).</li>
             </ul>
+
+            <h3>2.4 Apple Health (Optional, Write-Only)</h3>
+            <p>If you turn on <strong>Save to Apple Health</strong> in Nutrition settings and grant permission, the App <strong>writes</strong> the food you log to Apple Health as dietary energy, protein, carbohydrates, total fat, fiber, sugar, sodium and saturated fat (with the food name, time, and identifiers that let the App update or remove its own entries). The App:</p>
+            <ul>
+                <li>Requests <strong>write (share) permission only</strong> and never reads any Health data, including steps, heart rate, weight or data written by other apps</li>
+                <li>Does not send Health data to Gallahadd, OpenAI, or any other third party, and does not use it for advertising or marketing</li>
+                <li>Updates or deletes the Health entry it wrote when you edit or delete the logged food on the device that logged it</li>
+            </ul>
+            <p>You can change or revoke this permission at any time in the Health app (Sharing › Apps) or iOS Settings › Health › Data Access &amp; Devices, and turn off Save to Apple Health in the App. Entries already saved stay in Apple Health until you delete them there.</p>
         </div>
 
         <div class="section">
@@ -146,8 +157,18 @@
                     <td>Local device + iCloud (if you enable sync)</td>
                 </tr>
                 <tr>
-                    <td>AI Prompts</td>
-                    <td>Generate meal plans, workouts, smart tasks</td>
+                    <td>Nutrition Data (food log, saved foods, goals)</td>
+                    <td>Food tracking and daily totals</td>
+                    <td>Local device + iCloud (if you enable sync); optionally written to Apple Health (see 2.4)</td>
+                </tr>
+                <tr>
+                    <td>Food Search Terms and Barcodes</td>
+                    <td>Look up nutrition facts for packaged and common foods</td>
+                    <td>Sent to USDA FoodData Central and Open Food Facts to answer the lookup (see 4.2); not stored by Gallahadd</td>
+                </tr>
+                <tr>
+                    <td>AI Prompts (including Describe food descriptions)</td>
+                    <td>Generate meal plans, workouts, smart tasks, and food nutrition estimates</td>
                     <td>Temporary processing via AI provider; not retained by us after response (per current product design)</td>
                 </tr>
                 <tr>
@@ -165,11 +186,6 @@
                     <td>Diagnose failures and improve stability</td>
                     <td>Apple and/or Gallahadd’s configured crash tooling (see App Store privacy labels)</td>
                 </tr>
-                <tr>
-                    <td>Family Sharing Data</td>
-                    <td>Collaborate on shared folders</td>
-                    <td>iCloud shared database (Apple)</td>
-                </tr>
             </table>
         </div>
 
@@ -177,9 +193,11 @@
             <h2>4. AI and Third-Party Services</h2>
 
             <h3>4.1 OpenAI Integration</h3>
-            <p>When you use AI features (meal planning, workout generation, natural-language processing):</p>
+            <p>When you use AI features (meal planning, workout generation, natural-language processing, and Nutrition › Describe food estimates):</p>
             <ul>
                 <li>Your prompts are sent to OpenAI’s API for processing (or to OpenAI using your own API key, if you supply one)</li>
+                <li><strong>Nutrition › Describe:</strong> the food description you type (for example “two eggs and toast”) and the meal it is for are sent to OpenAI to estimate nutrition. Nothing is sent unless you tap Estimate.</li>
+                <li>Requests made with the App’s key may be covered by OpenAI’s data-sharing program for its complimentary usage tiers, under which OpenAI may use those inputs and outputs to improve its models. Requests made with your own key follow your OpenAI account’s data controls.</li>
                 <li>OpenAI processes requests according to their <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a> and applicable terms</li>
                 <li>We do not store your prompts after receiving the AI response (per current product design)</li>
                 <li>Personal information in prompts should be minimized; avoid including unnecessary identifiers</li>
@@ -190,16 +208,18 @@
                 <strong>AI Data Handling:</strong> We do not intentionally send your complete task list or personal identifiers to AI services. Only the specific prompt needed for the requested feature is transmitted.
             </div>
 
-            <h3>4.2 iCloud Sync</h3>
+            <h3>4.2 Food Databases (USDA FoodData Central and Open Food Facts)</h3>
+            <p>When you search for a food or scan a barcode while online, the search text or barcode is sent to the <a href="https://fdc.nal.usda.gov" target="_blank" rel="noopener noreferrer">USDA FoodData Central</a> API (U.S. Department of Agriculture, via api.data.gov) and/or <a href="https://world.openfoodfacts.org" target="_blank" rel="noopener noreferrer">Open Food Facts</a> to return nutrition facts. These requests include the App name and version but no account, device or personal identifiers; like any internet request, the services receive your IP address. Without your own USDA key, USDA lookups use a shared demonstration key and run only when you tap Search or scan a barcode. The built-in food database works offline without any request.</p>
+
+            <h3>4.3 iCloud Sync</h3>
             <p>If you enable iCloud sync:</p>
             <ul>
                 <li>Data is encrypted in transit and at rest by Apple under Apple’s iCloud practices</li>
-                <li>Syncs across devices signed into the same Apple ID</li>
-                <li>Family shared folders sync to invited members only</li>
+                <li>Syncs across devices signed into the same Apple ID (your tasks and your food log are private to your Apple ID; the App has no sharing with other people)</li>
                 <li>You can disable sync in Settings</li>
             </ul>
 
-            <h3>4.3 StoreKit (Subscriptions)</h3>
+            <h3>4.4 StoreKit (Subscriptions)</h3>
             <ul>
                 <li>Subscription purchases are processed by Apple</li>
                 <li>We receive transaction / entitlement information needed to unlock features</li>
@@ -214,6 +234,7 @@
             <ul>
                 <li>Sell your personal information</li>
                 <li>Share your data with advertisers for third-party advertising (no ads claimed in current product marketing)</li>
+                <li>Read Apple Health data, or use or disclose data written to Apple Health for advertising, marketing or data mining</li>
                 <li>Use your task content for marketing without your consent</li>
                 <li>Access your task content unless you explicitly share it for support</li>
             </ul>
@@ -221,9 +242,9 @@
             <h3>5.2 We May Share or Disclose Data:</h3>
             <ul>
                 <li><strong>With your consent:</strong> When you request or approve it</li>
-                <li><strong>Family Sharing:</strong> Shared folders with invited members</li>
                 <li><strong>Legal requirements:</strong> If required by law or valid legal process</li>
-                <li><strong>Service providers:</strong> OpenAI for AI processing (prompt content as needed); Apple and/or Gallahadd’s configured analytics and crash-diagnostics tooling for product improvement</li>
+                <li><strong>Service providers:</strong> OpenAI for AI processing (prompt content as needed, including Describe food descriptions); USDA FoodData Central and Open Food Facts for food lookups (search text and barcodes only); Apple and/or Gallahadd’s configured analytics and crash-diagnostics tooling for product improvement</li>
+                <li><strong>Apple Health:</strong> Only if you turn on Save to Apple Health, and only into your own Health data on your device</li>
                 <li><strong>Business transfers:</strong> In connection with a merger, acquisition, or asset transfer, with notice where required</li>
             </ul>
         </div>
@@ -280,12 +301,12 @@
                 <tr>
                     <td>Basic</td>
                     <td>As shown in App Store Connect / StoreKit</td>
-                    <td>iCloud sync, higher AI limits, family sharing (limited)</td>
+                    <td>iCloud sync, higher AI limits</td>
                 </tr>
                 <tr>
                     <td>Premium</td>
                     <td>As shown in App Store Connect / StoreKit</td>
-                    <td>Higher/unlimited AI and sharing as configured</td>
+                    <td>Higher/unlimited AI as configured</td>
                 </tr>
             </table>
             <p><strong>Trial:</strong> If a free trial is offered, Apple handles billing after the trial per your Apple ID settings. Cancel anytime through Apple to avoid charges after the trial.</p>
@@ -303,6 +324,7 @@
                 <li><strong>Your device / region:</strong> Local storage</li>
                 <li><strong>Apple’s systems:</strong> Based on your Apple ID / iCloud region</li>
                 <li><strong>OpenAI:</strong> Typically United States (for AI features), subject to OpenAI’s practices</li>
+                <li><strong>USDA FoodData Central / Open Food Facts:</strong> United States / France (food lookups only)</li>
                 <li><strong>Gallahadd:</strong> Support email and configured analytics/crash tooling may be processed in the United States (Waxahachie, Texas base)</li>
             </ul>
             <p>Where required, appropriate safeguards for international transfers are a matter of the applicable provider’s terms and applicable law.</p>
@@ -339,6 +361,10 @@
                 <tr>
                     <td>Deleted tasks</td>
                     <td>May be recoverable for a short period (e.g., ~30 days) if that feature ships</td>
+                </tr>
+                <tr>
+                    <td>Food log and Apple Health entries</td>
+                    <td>Until you delete them in the App (and, for Health entries, in the Health app) or remove the App / iCloud data</td>
                 </tr>
                 <tr>
                     <td>AI prompts</td>
@@ -382,10 +408,12 @@
                 <li>Operator / controller: Gallahadd Software LLC (Waxahachie, Texas)</li>
                 <li>Tasks primarily on-device; optional iCloud sync via Apple</li>
                 <li>We do not sell your personal information</li>
-                <li>AI prompts go to OpenAI (or your own key) for the requested feature</li>
+                <li>AI prompts, including food descriptions you enter in Describe, go to OpenAI (or your own key) for the requested feature</li>
+                <li>Food searches and barcodes are looked up in USDA FoodData Central and Open Food Facts</li>
+                <li>Apple Health is optional and write-only: the App saves the food you log and never reads Health data</li>
                 <li>Usage analytics and crash diagnostics may be collected for product improvement (Apple and/or Gallahadd’s configured tooling; see App Store privacy labels)</li>
                 <li>You can delete / export data through in-app tools and by contacting support</li>
-                <li>Family sharing is limited to invited members</li>
+                <li>No sharing with other people: your data is private to your Apple ID</li>
                 <li>Subscriptions are handled by Apple</li>
             </ul>
         </div>
