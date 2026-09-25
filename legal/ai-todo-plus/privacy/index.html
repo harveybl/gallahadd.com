@@ -87,7 +87,7 @@
         <p class="entity"><strong>Operator / Data Controller:</strong> Gallahadd Software LLC<br>
         <strong>Product:</strong> AI Todo Plus (Apple App Store ID 6749715981)<br>
         <strong>Mailing:</strong> Gallahadd Software LLC, Waxahachie, Texas, United States</p>
-        <p class="last-updated">Effective / Last Updated: September 22, 2026 (version 3.0)</p>
+        <p class="last-updated">Effective / Last Updated: September 25, 2026 (version 3.1)</p>
 
         <div class="highlight">
             <strong>Your Privacy Matters</strong><br>
@@ -198,14 +198,18 @@
             <h3>4.1 OpenAI Integration</h3>
             <p>When you use AI features (meal planning, workout generation, natural-language processing, and Nutrition › Describe food estimates):</p>
             <ul>
-                <li>Your prompts are sent to OpenAI’s API for processing (or to OpenAI using your own API key, if you supply one)</li>
+                <li>Your prompts are sent to OpenAI’s API for processing: through the AI Todo Plus AI service described below, or directly from your device if you supply your own OpenAI API key</li>
                 <li><strong>Nutrition › Describe:</strong> the food description you type (for example “two eggs and toast”) and the meal it is for are sent to OpenAI to estimate nutrition. Nothing is sent unless you tap Estimate.</li>
-                <li>Requests made with the App’s key may be covered by OpenAI’s data-sharing program for its complimentary usage tiers, under which OpenAI may use those inputs and outputs to improve its models. Requests made with your own key follow your OpenAI account’s data controls.</li>
+                <li>Requests made through AI Todo Plus AI may be covered by OpenAI’s data-sharing program for its complimentary usage tiers, under which OpenAI may use those inputs and outputs to improve its models. Requests made with your own key follow your OpenAI account’s data controls.</li>
                 <li>OpenAI processes requests according to their <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a> and applicable terms</li>
                 <li>We do not store your prompts after receiving the AI response (per current product design)</li>
                 <li>Personal information in prompts should be minimized; avoid including unnecessary identifiers</li>
                 <li>You may use your own OpenAI API key for greater control over billing and access under OpenAI’s terms</li>
             </ul>
+
+            <p><strong>AI Todo Plus AI (no personal key).</strong> When you use AI features without your own OpenAI API key, the App sends each AI request you start to an AI service operated by Gallahadd on Cloudflare, Inc.’s network (Cloudflare Workers, in the United States and other Cloudflare locations), which forwards it to OpenAI and returns the answer. Cloudflare acts as our processor. This service does not store or log the content of your requests or of the answers; it keeps only what it needs to prevent abuse: an anonymous per-install key identifier created by Apple’s App Attest (it does not identify you), request and token counts per day and month, and technical logs of the model, time, status and size of each request, kept for up to 7 days. To help OpenAI detect misuse, requests carry a one-way hash of that identifier. The service asks OpenAI not to store responses; OpenAI’s own retention and data-sharing terms still apply. With your own key, requests go directly from your device to OpenAI and never pass through this service.</p>
+
+            <p><strong>Apple Intelligence on your iPhone (optional).</strong> On supported iPhones you can run some AI features with Apple’s on-device model: by choosing “Try on this device” after a request fails, or by turning on Settings › “Use Apple Intelligence on this iPhone when possible”. Those requests are processed on your device and are not sent to Gallahadd or OpenAI; results are labeled “Made on device”. When Nutrition › Describe runs on device and you are online, it may look up food names in Open Food Facts or USDA FoodData Central, as described in 4.2.</p>
 
             <div class="highlight">
                 <strong>AI Data Handling:</strong> We do not intentionally send your complete task list or personal identifiers to AI services. Only the specific prompt needed for the requested feature is transmitted.
@@ -246,7 +250,7 @@
             <ul>
                 <li><strong>With your consent:</strong> When you request or approve it</li>
                 <li><strong>Legal requirements:</strong> If required by law or valid legal process</li>
-                <li><strong>Service providers:</strong> OpenAI for AI processing (prompt content as needed, including Describe food descriptions); USDA FoodData Central and Open Food Facts for food lookups (search text and barcodes only); Apple and/or Gallahadd’s configured analytics and crash-diagnostics tooling for product improvement</li>
+                <li><strong>Service providers:</strong> OpenAI for AI processing (prompt content as needed, including Describe food descriptions); Cloudflare, Inc. as the processor that runs the AI Todo Plus AI service (requests pass through without their content being stored); USDA FoodData Central and Open Food Facts for food lookups (search text and barcodes only); Apple and/or Gallahadd’s configured analytics and crash-diagnostics tooling for product improvement</li>
                 <li><strong>Apple Health:</strong> Only if you turn on Save to Apple Health, and only into your own Health data on your device</li>
                 <li><strong>Business transfers:</strong> In connection with a merger, acquisition, or asset transfer, with notice where required</li>
             </ul>
@@ -327,6 +331,7 @@
                 <li><strong>Your device / region:</strong> Local storage</li>
                 <li><strong>Apple’s systems:</strong> Based on your Apple ID / iCloud region</li>
                 <li><strong>OpenAI:</strong> Typically United States (for AI features), subject to OpenAI’s practices</li>
+                <li><strong>Cloudflare (AI Todo Plus AI service):</strong> United States and other Cloudflare network locations (AI requests in transit; usage counts and technical logs)</li>
                 <li><strong>USDA FoodData Central / Open Food Facts:</strong> United States / France (food lookups only)</li>
                 <li><strong>Gallahadd:</strong> Support email and configured analytics/crash tooling may be processed in the United States (Waxahachie, Texas base)</li>
             </ul>
@@ -370,8 +375,12 @@
                     <td>Until you delete them in the App (and, for Health entries, in the Health app) or remove the App / iCloud data</td>
                 </tr>
                 <tr>
-                    <td>AI prompts</td>
-                    <td>Not retained by Gallahadd after processing (provider may have its own logs under its policy)</td>
+                    <td>AI prompts and answers</td>
+                    <td>Not retained by Gallahadd; the AI Todo Plus AI service keeps no content (provider may have its own logs under its policy)</td>
+                </tr>
+                <tr>
+                    <td>AI Todo Plus AI usage data</td>
+                    <td>Anonymous per-install App Attest key and request/token counts while the install uses the service; technical request logs (no content) up to 7 days</td>
                 </tr>
                 <tr>
                     <td>Analytics</td>
