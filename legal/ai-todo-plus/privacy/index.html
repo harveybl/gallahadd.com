@@ -87,7 +87,7 @@
         <p class="entity"><strong>Operator / Data Controller:</strong> Gallahadd Software LLC<br>
         <strong>Product:</strong> AI Todo Plus (Apple App Store ID 6749715981)<br>
         <strong>Mailing:</strong> Gallahadd Software LLC, Waxahachie, Texas, United States</p>
-        <p class="last-updated">Effective / Last Updated: September 25, 2026 (version 3.1)</p>
+        <p class="last-updated">Effective / Last Updated: September 27, 2026 (version 3.2)</p>
 
         <div class="highlight">
             <strong>Your Privacy Matters</strong><br>
@@ -106,7 +106,7 @@
             <h3>2.1 Information You Provide</h3>
             <ul>
                 <li><strong>Task Data:</strong> Tasks, notes, due dates, priorities, and categories you create</li>
-                <li><strong>AI Prompts:</strong> Meal preferences, workout goals, natural-language inputs you submit to AI features, and food descriptions you enter in Nutrition › Describe</li>
+                <li><strong>AI Prompts:</strong> Meal preferences, workout goals, natural-language inputs you submit to AI features, and food descriptions and meal photos you add in Food › Describe or Photo</li>
                 <li><strong>Nutrition Data:</strong> Foods you log (name, brand, amount, meal, date and time, and nutrition values), your saved foods, meals and recipes, and your optional daily nutrition goals</li>
                 <li><strong>Food Search Terms and Barcodes:</strong> Text you type into food search and barcodes you scan or enter</li>
                 <li><strong>Account / Apple context:</strong> Apple ID context used for iCloud sync (handled by Apple) and subscription status via StoreKit</li>
@@ -127,13 +127,13 @@
             <ul>
                 <li>Location data (unless a future feature requires it and you grant permission)</li>
                 <li>Contact lists</li>
-                <li>Photos or media (unless you explicitly add them to tasks). The camera is used only to scan barcodes and nutrition labels; scanning and label text recognition run on your device, and images are not stored or uploaded.</li>
+                <li>Photos or media, except a meal photo you choose or take in Food › Describe or Photo, which is sent to OpenAI only when you tap Estimate (see 4.1). Barcode and nutrition-label scanning and label text recognition run on your device, and those images are not stored or uploaded.</li>
                 <li>Browsing history outside the App</li>
                 <li>Health / HealthKit data from Apple Health. The App never reads data from Apple Health (see 2.4).</li>
             </ul>
 
             <h3>2.4 Apple Health (Optional, Write-Only)</h3>
-            <p>If you turn on <strong>Save to Apple Health</strong> in Nutrition settings and grant permission, the App <strong>writes</strong> the food you log to Apple Health as dietary energy, protein, carbohydrates, total fat, fiber, sugar, sodium and saturated fat (with the food name, time, and identifiers that let the App update or remove its own entries). The App:</p>
+            <p>If you turn on <strong>Save to Apple Health</strong> in Settings › Food and grant permission, the App <strong>writes</strong> the food you log to Apple Health as dietary energy, protein, carbohydrates, total fat, fiber, sugar, sodium and saturated fat (with the food name, time, and identifiers that let the App update or remove its own entries). The App:</p>
             <ul>
                 <li>Requests <strong>write (share) permission only</strong> and never reads any Health data, including steps, heart rate, weight or data written by other apps</li>
                 <li>Does not send Health data to Gallahadd, OpenAI, or any other third party, and does not use it for advertising or marketing</li>
@@ -170,7 +170,7 @@
                     <td>Sent to USDA FoodData Central and Open Food Facts to answer the lookup (see 4.2); not stored by Gallahadd</td>
                 </tr>
                 <tr>
-                    <td>AI Prompts (including Describe food descriptions)</td>
+                    <td>AI Prompts (including Describe food descriptions and meal photos)</td>
                     <td>Generate meal plans, workouts, smart tasks, and food nutrition estimates</td>
                     <td>Temporary processing via AI provider; not retained by us after response (per current product design)</td>
                 </tr>
@@ -196,10 +196,10 @@
             <h2>4. AI and Third-Party Services</h2>
 
             <h3>4.1 OpenAI Integration</h3>
-            <p>When you use AI features (meal planning, workout generation, natural-language processing, and Nutrition › Describe food estimates):</p>
+            <p>When you use AI features (meal planning, workout generation, natural-language processing, and Food › Describe food estimates):</p>
             <ul>
                 <li>Your prompts are sent to OpenAI’s API for processing: through the AI Todo Plus AI service described below, or directly from your device if you supply your own OpenAI API key</li>
-                <li><strong>Nutrition › Describe:</strong> the food description you type (for example “two eggs and toast”) and the meal it is for are sent to OpenAI to estimate nutrition. Nothing is sent unless you tap Estimate.</li>
+                <li><strong>Food › Describe and Photo:</strong> the food description you type (for example “two eggs and toast”), or a photo of your meal with an optional note, and the meal it is for are sent to OpenAI to estimate nutrition. A meal photo is reduced in size and sent without its location or other photo details, and is not stored by Gallahadd or on the AI Todo Plus AI service. Nothing is sent unless you tap Estimate.</li>
                 <li>Requests made through AI Todo Plus AI may be covered by OpenAI’s data-sharing program for its complimentary usage tiers, under which OpenAI may use those inputs and outputs to improve its models. Requests made with your own key follow your OpenAI account’s data controls.</li>
                 <li>OpenAI processes requests according to their <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a> and applicable terms</li>
                 <li>We do not store your prompts after receiving the AI response (per current product design)</li>
@@ -209,7 +209,7 @@
 
             <p><strong>AI Todo Plus AI (no personal key).</strong> When you use AI features without your own OpenAI API key, the App sends each AI request you start to an AI service operated by Gallahadd on Cloudflare, Inc.’s network (Cloudflare Workers, in the United States and other Cloudflare locations), which forwards it to OpenAI and returns the answer. Cloudflare acts as our processor. This service does not store or log the content of your requests or of the answers; it keeps only what it needs to prevent abuse: an anonymous per-install key identifier created by Apple’s App Attest (it does not identify you), request and token counts per day and month, and technical logs of the model, time, status and size of each request, kept for up to 7 days. To help OpenAI detect misuse, requests carry a one-way hash of that identifier. The service asks OpenAI not to store responses; OpenAI’s own retention and data-sharing terms still apply. With your own key, requests go directly from your device to OpenAI and never pass through this service.</p>
 
-            <p><strong>Apple Intelligence on your iPhone (optional).</strong> On supported iPhones you can run some AI features with Apple’s on-device model: by choosing “Try on this device” after a request fails, or by turning on Settings › “Use Apple Intelligence on this iPhone when possible”. Those requests are processed on your device and are not sent to Gallahadd or OpenAI; results are labeled “Made on device”. When Nutrition › Describe runs on device and you are online, it may look up food names in Open Food Facts or USDA FoodData Central, as described in 4.2.</p>
+            <p><strong>Apple Intelligence on your iPhone (optional).</strong> On supported iPhones you can run some AI features with Apple’s on-device model: by choosing “Try on this device” after a request fails, or by turning on Settings › “Use Apple Intelligence on this iPhone when possible”. Those requests are processed on your device and are not sent to Gallahadd or OpenAI; results are labeled “Made on device”. When Food › Describe runs on device and you are online, it may look up food names in Open Food Facts or USDA FoodData Central, as described in 4.2.</p>
 
             <div class="highlight">
                 <strong>AI Data Handling:</strong> We do not intentionally send your complete task list or personal identifiers to AI services. Only the specific prompt needed for the requested feature is transmitted.
