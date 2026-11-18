@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Setting up Plaid for SAFE Budget</title>
+<meta name="description" content="Before you connect your own Plaid account to SAFE Budget: the six steps, including the exact redirect address to add in the Plaid Dashboard.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3a5f'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='34' text-anchor='middle' fill='%23f4efe6'%3EG%3C/text%3E%3C/svg%3E">
+<style>
+  :root { --bg:#f7f5f0; --fg:#1d1d1f; --muted:#5c5f66; --card:#ffffff; --line:#e4e1da; --accent:#1f3a5f; --accent-fg:#ffffff; --code-bg:#efece5; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#131416; --fg:#ececec; --muted:#a2a6ad; --card:#1c1e22; --line:#2c2f35; --accent:#7fa6d6; --accent-fg:#0f1a29; --code-bg:#24272c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.7 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  a { color:var(--accent); }
+  .wrap { max-width:680px; margin:0 auto; padding:0 16px; }
+  header { padding:40px 0 8px; }
+  .brand { display:flex; align-items:center; gap:14px; text-decoration:none; color:inherit; font-size:15px; }
+  .mark { width:36px; height:36px; border-radius:9px; background:var(--accent); color:var(--accent-fg); display:grid; place-items:center; font:700 20px Georgia, "Times New Roman", serif; }
+  h1 { font-size:34px; line-height:1.2; margin:32px 0 6px; letter-spacing:-.4px; }
+  .lede { color:var(--muted); margin:0 0 24px; }
+  ol.steps { padding-left:1.3em; }
+  ol.steps > li { margin:0 0 18px; padding-left:4px; }
+  ol.steps strong { display:block; }
+  .uri { display:block; margin:10px 0 6px; padding:12px 14px; background:var(--code-bg); border:1px solid var(--line); border-radius:10px;
+         font:15px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; overflow-wrap:anywhere; word-break:break-all;
+         -webkit-user-select:all; user-select:all; }
+  .note { color:var(--muted); font-size:15px; }
+  .box { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:28px 0; }
+  .box h2 { font-size:19px; margin:0 0 8px; }
+  .box p { margin:6px 0; }
+  footer { margin-top:56px; padding:28px 0 48px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
+  footer p { margin:6px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="/"><span class="mark" aria-hidden="true">G</span> Gallahadd Software LLC</a>
+  </header>
+  <article>
+    <h1>Setting up Plaid for SAFE Budget</h1>
+    <p class="lede">SAFE Budget can connect to your bank through your own Plaid account. Do these steps before you connect a bank. Most people find it easiest with the Plaid Dashboard open on a computer and SAFE Budget on their phone.</p>
+
+    <ol class="steps">
+      <li>
+        <strong>Create a Plaid account.</strong>
+        Sign up at <a href="https://dashboard.plaid.com/">dashboard.plaid.com</a>. New US and Canada Plaid accounts can use the free Trial plan, which allows ten bank connections in total. Each bank login you link uses one, and disconnecting a bank does not give it back, so link each bank once.
+      </li>
+      <li>
+        <strong>Apply for the Trial plan.</strong>
+        Sandbox keys only reach Plaid's test banks. To connect your real accounts, apply for the Trial plan using the button on the Dashboard home page. Once Plaid approves it, use your Production keys.
+      </li>
+      <li>
+        <strong>Add this address to your Allowed redirect URIs.</strong>
+        Add it to the &ldquo;Allowed redirect URIs&rdquo; list at <a href="https://dashboard.plaid.com/developers/api">dashboard.plaid.com/developers/api</a>. Copy it exactly, with no slash at the end:
+        <code class="uri">https://harveybl.github.io/safebudget/plaid-oauth</code>
+        <span class="note">Some banks send you to their own website to sign in. When you finish, your bank sends you back through this address: a static page that hands you back to SAFE Budget. Without it, Plaid refuses to start the connection at all.</span>
+      </li>
+      <li>
+        <strong>Publish a Data Transparency use case.</strong>
+        Open the Link customization named &ldquo;default&rdquo; (<a href="https://dashboard.plaid.com/link/data-transparency-v5">dashboard.plaid.com/link/data-transparency-v5</a>), open its Data Transparency section, select at least one use case, and press Publish. SAFE Budget always uses the &ldquo;default&rdquo; customization, so publishing on a new or duplicated one has no effect. Plaid requires this before Link works with real banks.
+      </li>
+      <li>
+        <strong>Using a Mac?</strong>
+        On a Mac, connecting completes reliably only for banks that do not send you to their own website or app to sign in. Connect those other banks on iPhone or iPad. With iCloud sync on in SAFE Budget, the transactions imported on your iPhone or iPad also appear on your Mac.
+      </li>
+      <li>
+        <strong>Paste your client ID and secret into SAFE Budget.</strong>
+        Use the keys for the same environment you chose in the app (Production for real banks). SAFE Budget keeps them in your keychain, where they may sync to your other devices through end-to-end-encrypted iCloud Keychain, and sends them only to Plaid; they never reach us.
+      </li>
+    </ol>
+
+    <div class="box">
+      <h2>If SAFE Budget shows &ldquo;Plaid: &hellip; (INVALID_FIELD)&rdquo;</h2>
+      <p>Check that the address in step 3 is on your Allowed redirect URIs list, character for character: https, not http, and no slash at the end. Add it if it is missing, then try again.</p>
+    </div>
+
+    <p>Still stuck? <a href="/support-safebudget">Contact SAFE Budget support</a>.</p>
+  </article>
+  <footer>
+    <p><a href="/support-safebudget">Support</a> · <a href="/privacy-safebudget">Privacy</a> · <a href="/terms-safebudget">Terms</a></p>
+    <p>&copy; 2026 Gallahadd Software LLC. Plaid is a trademark of Plaid Inc. Apple, iPhone, iPad, Mac and iCloud are trademarks of Apple Inc.</p>
+  </footer>
+</div>
+</body>
+</html>
